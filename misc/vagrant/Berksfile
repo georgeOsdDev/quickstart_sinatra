@@ -1,0 +1,7 @@
+source "https://supermarket.getchef.com"
+
+cookbook 'git', '= 4.0.2'
+cookbook 'iptables', path: './site-cookbooks/iptables'
+cookbook 'rbenv', '= 1.7.1'
+cookbook 'nginx', '= 2.7.4'
+cookbook 'mysql', '= 5.5.1'

@@ -1,0 +1,13 @@
+.bundle/
+.sass-cache/
+.DS_Store
+tmp/**/*
+
+vendor/bundle
+Gemfile.lock
+bin/*
+.bundle/*
+
+config/secret.yml
+config/database.yml
+logs/*.log
