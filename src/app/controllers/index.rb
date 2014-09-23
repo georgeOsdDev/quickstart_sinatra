@@ -1,9 +1,9 @@
+#encoding: utf-8
 get '/' do
-  if session[:uid].nil?
-      redirect '/auth'
-  else
-    "welcome #session[:uid]"
-  end
+  logger.debug "debug"
+  logger.error "error"
+  logger.info "info"
+  "welcome"
 end
 
 get '/test/exception' do

@@ -34,7 +34,7 @@ git clone https://github.com/sstephenson/ruby-build.git /tmp/ruby-build
 sudo mv /tmp/ruby-build /opt/rbenv/plugins/
 rbenv install 2.1.2
 rbenv global 2.1.2
-
+gem install bundler
 ```
 
-Server source code will be synced to `/opt/src` with host OS.
+Server application source code (`../src` at host OS) will be synced as `/opt/src` to guest OS.

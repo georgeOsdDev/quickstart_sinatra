@@ -4,10 +4,16 @@
 tmp/**/*
 
 vendor/bundle
-Gemfile.lock
 bin/*
 .bundle/*
 
+static/images/profile/*
+static/images/album/*
+
 config/secret.yml
 config/database.yml
-logs/*.log
+logs/*
+db/migrate/*
+
+doc/*
+.yardoc

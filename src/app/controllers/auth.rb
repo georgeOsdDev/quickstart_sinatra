@@ -1,9 +1,21 @@
-get '/auth' do
-  "auth"
+#encoding: utf-8
+
+post '/auth/login' do
+
+  result = {
+    status:      STATUS_SUCCESS,
+    data:{}
+  }
+  MultiJson.encode result
 end
 
-get '/auth/logout' do
+post '/auth/unauthenticated' do
+  status 403
+  MultiJson.encode(status: STATUS_FAIL, error_cd: ERR_CD_403, message: "Not authenticated")
+end
+
+post '/auth/logout' do
   request.env["warden"].logout
   session.clear
-  json(status: 0)
+  MultiJson.encode(status: 0, data:[])
 end
