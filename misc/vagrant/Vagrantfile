@@ -10,7 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "centos65"
+  config.vm.box = "centos63"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -43,20 +43,21 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ]
     chef.add_recipe "git"
     chef.add_recipe "iptables::disabled"
-    chef.add_recipe "rbenv"
+    chef.add_recipe "rbenv::user"
     chef.add_recipe "nginx"
-    chef.add_recipe "mysql::server"
-    chef.add_recipe "mysql::client"
+    chef.add_recipe "yum-mysql-community::mysql56"
+    chef.add_recipe "mysql-community-server"
+    chef.add_recipe "imagemagick"
 
     # You may also specify custom JSON attributes:
     chef.json = {
-      :mysql => {
-        :allow_remote_root => true,
-        :bind_address => "0.0.0.0",
-        :grants_path => "/vagrant/grants.sql",
-        :server_root_password => "password",
-        :server_repl_password => "password",
-        :server_debian_password => "password"
+      "mysql-community-server" => {
+        :root_password => "password"
+      },
+      "rbenv" => {
+        :user_installs => [{
+          :user    => 'vagrant'
+        }]
       }
     }
   end

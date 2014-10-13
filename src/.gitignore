@@ -13,7 +13,8 @@ static/images/album/*
 config/secret.yml
 config/database.yml
 logs/*
-db/migrate/*
 
 doc/*
 .yardoc
+
+unicorn.pid
