@@ -30,6 +30,8 @@ GEM
       addressable
       faraday
       multi_json
+    migration_comments (0.3.2)
+      activerecord (>= 2.3.2)
     minitest (5.4.1)
     multi_json (1.10.1)
     multipart-post (2.0.0)
@@ -40,6 +42,7 @@ GEM
     rack-test (0.6.2)
       rack (>= 1.0)
     raindrops (0.13.0)
+    rake (10.1.0)
     rmagick (2.13.3)
     rspec (3.1.0)
       rspec-core (~> 3.1.0)
@@ -90,8 +93,10 @@ DEPENDENCIES
   activerecord
   activerecord-import
   koala
+  migration_comments
   mysql2
   rack (~> 1.1)
+  rake (= 10.1.0)
   rmagick
   rspec
   sinatra

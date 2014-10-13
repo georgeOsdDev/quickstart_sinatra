@@ -3,6 +3,8 @@ require './main'
 
 Encoding.default_external = "utf-8" if defined?(Encoding) && Encoding.respond_to?("default_external")
 ENV["TZ"] = "Asia/Tokyo"
+Time.zone = "Tokyo"
+ActiveRecord::Base.default_timezone = :local
 
 PROJECT_ROOT = Sinatra::Application.root
 

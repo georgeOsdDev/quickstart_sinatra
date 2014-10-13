@@ -4,7 +4,7 @@
 
 * [ruby](https://www.ruby-lang.org/en/) 2.1.2
 * [gem](https://rubygems.org/) 2.2.2
-* [bundler](http://bundler.io/) 1.7.2
+* [bundler](http://bundler.io/) 1.7.2 +
 * [ImageMagick](http://www.imagemagick.org/) 6.5.4-7
 
 
@@ -21,6 +21,26 @@ Copyright: Copyright (C) 1999-2009 ImageMagick Studio LLC
 ```
 
 You can use [rbenv](https://github.com/sstephenson/rbenv) to install these requirements.
+
+```
+rbenv install --list
+rbenv install 2.1.2
+rbenv rehash
+rbenv versions
+rbenv global 2.1.2
+gem install bundler
+```
+
+Set up MySQL for utf8mb4
+```
+sudo vi /etc/my.cnf
+sudo service mysqld restart
+```
+
+Install libs for gem
+```
+sudo yum install ImageMagick-devel mysql-devel
+```
 
 ## Clone repository and install gems
 
@@ -39,7 +59,8 @@ Start the app by running:
 
 # How do I start the application in daemon?
 
-    bundle exec unicorn -c unicorn.rb -D
+
+    RACK_ENV=production bundle exec unicorn -c unicorn.rb -D
 
     # Stop
     kill -QUIT `cat unicorn.pid`
@@ -60,22 +81,27 @@ There are a few helper Rake tasks that will help you to clear and compile your S
 
 # How to setup Database?
 
-Make sure that MySQL is working and database is exists according to app/config/database.yml
-
     bundle exec rake db:create:all
+    bundle exec rake db:migrate
 
-or
+
+** Notice **
+** TODO **
+** FIXME **
+Do not use `schema.rb.`
+`schema.rb` is created by `bundle exec rake db:schema:dump`,
+currently `schema.rb` does not contains whole information of schema like column comment, table options.
+
+If you want to use `schema.rb`, make sure to add these lines.
 
 ```
-mysql -u root -p
-mysql>create database mydatabase;  
-mysql>grant all on mydatabase.* to 'root'@'localhost';  
+execute "ALTER TABLE user_fb_friends ROW_FORMAT=DYNAMIC;"
+execute "ALTER TABLE users ROW_FORMAT=DYNAMIC;"
 ```
-
 
 See also:
 http://rubylearning.com/satishtalim/ruby_activerecord_and_mysql.html
 
-## Migrate table
+## Generate documentation
 
-    bundle exec rake db:migrate
+    bundle exec yardoc app --plugin yard-sinatra
